@@ -40,3 +40,11 @@ select c.customer_name, count(o.order_id) countorder from customers c left join 
 select p.category, avg(o.discount) as avgdiscoun from products p left join orders o on p.product_id = o.order_id group by p.category order by avgdiscoun;
 select c.customer_name, sum(o.sales) sumsales from customers c left join orders o on c.customer_id = o.customer_id group by c.customer_id having sum(o.sales) > 2000 order by sumsales desc;
 select c.region, sum(o.sales), avg(o.discount), count(o.order_id) from customers c left join orders o on c.customer_id = o.customer_id group by c.region;
+select c.name as customer_name, sum(o.sales) as total_sales, avg(o.discount) as average_discount, distinct o.order_id as order_count,
+    case
+        when sum(order.sales) > 2500 then 'VIP'
+        else 'REGULAR'
+    end as customer_type
+from customers c left join orders o on c.customer_id = o.customer_id
+group by c.customer_id, c.name
+order by total_sales desc;
