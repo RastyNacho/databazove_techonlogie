@@ -34,3 +34,4 @@ select o.order_id,c.customer_name, o.sales from orders o join customers c on o.c
 select o.order_id,c.customer_name, p.category, o.sales from orders o join customers c on o.customer_id = c.customer_id  join products p on o.product_id = p.product_id order by o.order_id desc;
 select c.region, sum(o.sales) as salesSum from orders o right join customers c on o.customer_id = c.customer_id group by c.region order by c.region;
 select p.product_name, sum(o.sales) from products p left join orders o on p.product_id = o.product_id group by p.product_name;
+select c.customer_name, o.order_id, o.sales from orders o join customers c on c.customer_id = o.customer_id;
