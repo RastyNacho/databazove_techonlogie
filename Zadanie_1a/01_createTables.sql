@@ -29,3 +29,5 @@ create table orders(
     foreign KEY (product_id)
         references products(product_id)
 );
+
+select o.order_id,c.customer_name, o.sales from orders o join customers c on o.customer_id = c.customer_id where o.sales>500 order by o.sales desc;
